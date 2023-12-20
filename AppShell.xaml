@@ -8,7 +8,7 @@
 
     <TabBar>
         <ShellContent
-            Title="Programarile Mele" 
+            Title="Welcome" 
             ContentTemplate="{DataTemplate local:MainPage}"
             />
         <ShellContent
@@ -16,9 +16,13 @@
              ContentTemplate="{DataTemplate local:AboutPage}"
              />
         <ShellContent
-             Title="Serviciile Mele"
+             Title="Programarile Mele"
             ContentTemplate="{DataTemplate local:ListEntryPage}"
             />
+        <ShellContent
+         Title="Serviciile mele"
+         ContentTemplate="{DataTemplate local:ServiciuEntryPage}"
+     />
     </TabBar>
 
 </Shell>

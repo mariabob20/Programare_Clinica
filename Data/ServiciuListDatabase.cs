@@ -18,6 +18,8 @@ namespace Programare_Clinica.Data
             _database.CreateTableAsync<ServiciuList>().Wait();
             _database.CreateTableAsync<Programare>().Wait();
             _database.CreateTableAsync<ListProgramare>().Wait();
+            _database.CreateTableAsync<Serviciu>().Wait();
+
         }
 
         public Task<List<ServiciuList>> GetServiciuListsAsync()
@@ -48,20 +50,20 @@ namespace Programare_Clinica.Data
         {
             return _database.DeleteAsync(slist);
         }
-        public Task<int> SaveProgramareAsync(Programare programare)
+        public Task<int> SaveProgramareAsync(Programare Programare)
         {
-            if (programare.ID != 0)
+            if (Programare.ID != 0)
             {
-                return _database.UpdateAsync(programare);
+                return _database.UpdateAsync(Programare);
             }
             else
             {
-                return _database.InsertAsync(programare);
+                return _database.InsertAsync(Programare);
             }
         }
-        public Task<int> DeleteProgramareAsync(Programare programare)
+        public Task<int> DeleteProgramareAsync(Programare Programare)
         {
-            return _database.DeleteAsync(programare);
+            return _database.DeleteAsync(Programare);
         }
         public Task<List<Programare>> GetProgramariAsync()
         {
@@ -78,13 +80,32 @@ namespace Programare_Clinica.Data
                 return _database.InsertAsync(listp);
             }
         }
-        public Task<List<Programare>> GetListProgramariAsync(int shoplistid)
+        public Task<List<Programare>> GetListProgramariAsync(int serviciulistid)
         {
             return _database.QueryAsync<Programare>(
-            "select P.ID, P.Descriere pentru Programare P"
-            + " inner join ListProgramari LP"
-            + " on P.ID = LP.ProgramareID where LP.ServiciuListID = ?",
-            shoplistid);
+        "select P.ID, P.Descriere from Programare P"
+        + " inner join ListProgramare LP"
+        + " on P.ID = LP.ProgramareID where LP.ServiciuListID = ?",
+        serviciulistid);
+        }
+        public Task<List<Serviciu>> GetServiciiAsync()
+        {
+            return _database.Table<Serviciu>().ToListAsync();
+        }
+        public Task<int> SaveServiciuAsync(Serviciu serviciu)
+        {
+            if (serviciu.ID != 0)
+            {
+                return _database.UpdateAsync(serviciu);
+            }
+            else
+            {
+                return _database.InsertAsync(serviciu);
+            }
+        }
+        public Task<int> DeleteServiciuAsync(Serviciu serviciu)
+        {
+            return _database.DeleteAsync(serviciu);
         }
     }
 }

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SQLite;
+using SQLiteNetExtensions.Attributes;
 
 namespace Programare_Clinica.Models
 {
@@ -18,7 +18,7 @@ namespace Programare_Clinica.Models
 
         public DateTime Date { get; set; }
 
-       // [ForeignKey(typeof(Serviciu))]
-       // public int ServiciuID { get; set; }  adauga la lab 10
+        [ForeignKey(typeof(Serviciu))]
+        public int ServiciuID { get; set; }  
     }
 }
