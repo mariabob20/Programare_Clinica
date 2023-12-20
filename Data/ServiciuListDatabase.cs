@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Programare_Clinica.Models;
 using SQLite;
+using Programare_Clinica.Models;
 
 namespace Programare_Clinica.Data
 {
@@ -16,6 +16,8 @@ namespace Programare_Clinica.Data
         {
             _database = new SQLiteAsyncConnection(dbPath);
             _database.CreateTableAsync<ServiciuList>().Wait();
+            _database.CreateTableAsync<Programare>().Wait();
+            _database.CreateTableAsync<ListProgramare>().Wait();
         }
 
         public Task<List<ServiciuList>> GetServiciuListsAsync()
@@ -45,6 +47,44 @@ namespace Programare_Clinica.Data
         public Task<int> DeleteServiciuListAsync(ServiciuList slist)
         {
             return _database.DeleteAsync(slist);
+        }
+        public Task<int> SaveProgramareAsync(Programare programare)
+        {
+            if (programare.ID != 0)
+            {
+                return _database.UpdateAsync(programare);
+            }
+            else
+            {
+                return _database.InsertAsync(programare);
+            }
+        }
+        public Task<int> DeleteProgramareAsync(Programare programare)
+        {
+            return _database.DeleteAsync(programare);
+        }
+        public Task<List<Programare>> GetProgramariAsync()
+        {
+            return _database.Table<Programare>().ToListAsync();
+        }
+        public Task<int> SaveListProgramareAsync(ListProgramare listp)
+        {
+            if (listp.ID != 0)
+            {
+                return _database.UpdateAsync(listp);
+            }
+            else
+            {
+                return _database.InsertAsync(listp);
+            }
+        }
+        public Task<List<Programare>> GetListProgramariAsync(int shoplistid)
+        {
+            return _database.QueryAsync<Programare>(
+            "select P.ID, P.Descriere pentru Programare P"
+            + " inner join ListProgramari LP"
+            + " on P.ID = LP.ProgramareID where LP.ServiciuListID = ?",
+            shoplistid);
         }
     }
 }
