@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Programare_Clinica.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Programare_Clinica"
+    Shell.FlyoutBehavior="Disabled">
+
+    <TabBar>
+        <ShellContent
+            Title="Programarile Mele" 
+            ContentTemplate="{DataTemplate local:MainPage}"
+            />
+        <ShellContent
+             Title="About"
+             ContentTemplate="{DataTemplate local:AboutPage}"
+             />
+        <ShellContent
+             Title="Serviciile Mele"
+            ContentTemplate="{DataTemplate local:ListEntryPage}"
+            />
+    </TabBar>
+
+</Shell>

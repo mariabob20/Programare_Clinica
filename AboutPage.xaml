@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Programare_Clinica.AboutPage"
+             Title="AboutPage">
+    <VerticalStackLayout Spacing="10" Margin="10">
+        <HorizontalStackLayout Spacing="10">
+            <Image Source="logo.png" SemanticProperties.Description="Programarile Mele" HeightRequest="64" />
+            <Label FontSize="22" FontAttributes="Bold" Text="Programarile Mele" VerticalOptions="End" />
+            <Label FontSize="22" Text="de Alexandra si Maria" VerticalOptions="End" />
+        </HorizontalStackLayout>
+        <Label Text="Happy Paws Veterinary Clinic oferă servicii veterinare complete și de înaltă calitate , cu posibilitatea de a face rezervări online pentru comoditatea proprietarilor de animale. Dotată cu echipajul său dedicat și facilități moderne, clinica se angajează să asigure sănătatea și fericirea animalelor de companie" />
+
+    </VerticalStackLayout>
+</ContentPage>
